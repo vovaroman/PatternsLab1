@@ -54,6 +54,7 @@
     <Compile Include="Factory\IUnitFactory.cs" />
     <Compile Include="Factory\RectangleFactory.cs" />
     <Compile Include="Factory\Rectangle\RectangleBuilder.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="PatternsForm.cs">
       <SubType>Form</SubType>
