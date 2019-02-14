@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factory\AbstractObject.cs" />
     <Compile Include="Factory\CircleFactory.cs" />
     <Compile Include="Factory\Circle\CircleBuilder.cs" />
     <Compile Include="Factory\UserColor.cs" />

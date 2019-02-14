@@ -15,7 +15,16 @@ namespace patternLab.Factory
 
         public string Name { get; set; }
 
-        public IObjectBuilder ObjectBuilder { get; set; }
+        public IObjectBuilder ObjectBuilder {
+            get
+            {
+                return new CircleBuilder();
+            }
+            set
+            {
+
+            }
+        }
 
         public void Animate() { }
 

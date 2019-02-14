@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using patternLab.Map;
+using patternLab.Factory.Rectangle;
+
 namespace patternLab
 {
     public partial class PatternsForm : Form
@@ -22,14 +24,11 @@ namespace patternLab
         {
             InitializeComponent();
             gs = this.CreateGraphics();
-            //map = Map.Map.GetInstance(new Point(0,0), this.Height, this.Width, gs);
             map = Map.Map.GetInstance(new Point(0, 0), this.Height, this.Width, gs);
-            // gameField = new Rectangle(new Point(0, 0), new Size(this.Width, this.Height));
         }
 
         private void PatternsForm_Load(object sender, EventArgs e)
         {            
-            //this.BackColor = Color.FromArgb(223, 223, 223);
         }
         public List<Delegate> Tasks = new List<Delegate>();
 
@@ -44,7 +43,6 @@ namespace patternLab
                     object arg = null;
                     MethodInfo methodInfo = task.GetMethodInfo();
                     ParameterInfo[] parameters = methodInfo.GetParameters();
-                    //object classInstance = Activator.CreateInstance(typeof(), null);
 
                     if (parameters.Length == 0)
                     {
@@ -54,10 +52,6 @@ namespace patternLab
                     {
                         object[] par = new object[] { "string" };
                         object[] parametersArray = new object[] { par };
-
-                        // The invoke does NOT work;
-                        // it throws "Object does not match target type"             
-                        //methodInfo.Invoke(null, parameters);
                         task.DynamicInvoke(parametersArray);
                         
                     }
@@ -72,8 +66,6 @@ namespace patternLab
 
         private void PatternOnResize(object sender, EventArgs e)
         {
-            //this.AutoScaleDimensions = new System.Drawing.Size(this.Width, this.Height);
-            //this.ClientSize = new Size(this.Height, this.Width);
             Map.Map.Size.Height = this.Height;
             Map.Map.Size.Width = this.Width;
         }
@@ -92,40 +84,49 @@ namespace patternLab
                     bl.formGraphics = e.Graphics;
                     (bl as CircleBuilder).DrawObject();
                 }
+                else
+                {
+                    bl.formGraphics = e.Graphics;
+                    (bl as RectangleBuilder).DrawObject();
+                }
             }
-
-            //gs.FillRectangle(new SolidBrush(Color.BlueViolet), gameField);
 
             if (!FormLoaded)
             {
-                
-                for (int i = 0; i < 100; i++)
+                IUnitFactory factory = new CircleFactory();                
+                for (int i = 0; i < 50; i++)
                 {
-
-                    CircleFactory circleFactory = new CircleFactory();
-                    CircleBuilder cl = new CircleBuilder(); // circleFactory.ObjectBuilder.BuildObject() as CircleBuilder;
-                    cl.timer = this.Timer;
-                    cl.formGraphics = gs;
-                    cl.ThisObject = new Rectangle(new Random(cl.GetHashCode()).Next(1, 100),                        
-                        new Random(cl.GetHashCode()).Next(1,100), 50, 50);
-                    cl.ObjectColor = new UserColor(new Random(cl.GetHashCode()).Next(0, 255),
-                        new Random(cl.GetHashCode()).Next(0, 255), new Random(cl.GetHashCode()).Next(0, 255));
-                    //= new CircleBuilder(gs, new Rectangle(1, 1, 50, 50), new UserColor(24, 255, 24), this.Timer);
-
-                    //CircleBuilder circle = circleFactory.ObjectBuilder.BuildObject() as CircleBuilder;
-                    map.MapObjects.Add(cl);
-                    Tasks.Add(cl.Animate());
-
+                    if (i > 25)
+                        factory = new RectangleFactory();
+                    if (factory is CircleFactory)
+                    {
+                        IObjectBuilder cl = factory.ObjectBuilder as CircleBuilder;
+                        CircleBuilder temp = CircleBuilder.CopyCircle(cl as CircleBuilder);
+                        (cl as CircleBuilder).Draw(cl, map, Tasks);
+                        temp.Draw(temp, map, Tasks);
+                    }
+                    else
+                    {
+                        IObjectBuilder cl = factory.ObjectBuilder as Factory.Rectangle.RectangleBuilder;
+                        (cl as Factory.Rectangle.RectangleBuilder).Draw(cl, map, Tasks);
+                    }
                     FormLoaded = true;
                 }
-                foreach(CircleBuilder cl in map.MapObjects)
+                foreach(IObjectBuilder cl in map.MapObjects)
                 {
-                    cl._thisObject.X = new Random(cl.GetHashCode()).Next(1, 1000);
-                    cl._thisObject.Y = new Random(cl.GetHashCode()).Next(1, 1000);
+                    if (cl is CircleBuilder)
+                    {
+                        (cl as CircleBuilder)._thisObject.X = new Random(cl.GetHashCode()).Next(1, 1000);
+                        (cl as CircleBuilder)._thisObject.Y = new Random(cl.GetHashCode()).Next(1, 1000);
+                    }
+                    else
+                    {
+                        (cl as RectangleBuilder)._thisObject.X = new Random(cl.GetHashCode()).Next(1, 1000);
+                        (cl as RectangleBuilder)._thisObject.Y = new Random(cl.GetHashCode()).Next(1, 1000);
+                    }
                 }
 
             }
-            //}
 
         }
 

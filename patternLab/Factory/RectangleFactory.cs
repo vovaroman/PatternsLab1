@@ -11,7 +11,16 @@ namespace patternLab.Factory
     public class RectangleFactory : IUnitFactory
     {
         public string Name { get; set; }
-        public IObjectBuilder ObjectBuilder { get; set; }
+        public IObjectBuilder ObjectBuilder {
+            get
+            {
+                return new RectangleBuilder();
+            }
+            set
+            {
+
+            }
+        }
 
     }
 }
