@@ -45,8 +45,10 @@ namespace patternLab
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.PatternsForm_Paint);
             this.Timer.Enabled = true;
             this.Timer.Tick += new System.EventHandler(this.OnTimer);
-            this.Timer.Interval = 20;
-            this.Timer.Start();
+            this.Timer.Interval = 10;
+            this.DoubleBuffered = true;
+            
+            //this.Timer.Start();
             this.ResumeLayout(false);
 
         }

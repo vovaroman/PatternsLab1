@@ -8,6 +8,8 @@ namespace patternLab
 {
     public class Helper
     {
+        public static bool MovingDown = true;
+
         public static int Operator(string op, int a, int b)
         {
             switch(op)

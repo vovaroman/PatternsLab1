@@ -11,7 +11,7 @@ namespace patternLab.Map
     public class Map
     {
         private static Map MapObject;
-        private static Graphics Graphics;
+        public static Graphics Graphics;
         private static Point PointStart;
 
         public static Size Size;
@@ -20,13 +20,13 @@ namespace patternLab.Map
             Size = new Size(width, height);
             PointStart = p;
             GameField = new Rectangle(PointStart, Size);
-            Graphics.FillRectangle(new SolidBrush(Color.BlueViolet), GameField);
+            Graphics.FillRectangle(new SolidBrush(Color.OldLace), GameField);
         }
 
         public void DrawMap()
         {
             GameField = new Rectangle(PointStart, Size);
-            Graphics.FillRectangle(new SolidBrush(Color.BlueViolet), GameField);
+            Graphics.FillRectangle(new SolidBrush(Color.OldLace), GameField);
         }
 
         public static Map GetInstance(Point p, int height, int width, Graphics gs)

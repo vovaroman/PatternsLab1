@@ -12,10 +12,12 @@ namespace patternLab.Factory
     {
         //private IObjectBuilder _objectBuilder = new IObjectBuilder();
 
+
         public string Name { get; set; }
 
         public IObjectBuilder ObjectBuilder { get; set; }
 
         public void Animate() { }
+
     }
 }
