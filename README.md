@@ -4,7 +4,7 @@
 
 *Group - TI-164*
 
-*Name - Patterns Lab 1 "Creational Patterns" *
+*Name - Patterns Lab 1 Creational Patterns *
 
 This lab include realisation of next patterns: 
 1. Factory Method 
