@@ -148,4 +148,5 @@ public class Map
 
 In this code block we can check realisation of singleton pattern:)
 
-
+Screenshot of program:
+![Image of program](https://pp.userapi.com/c847019/v847019010/19db33/oYqPlVIcRBk.jpg)
