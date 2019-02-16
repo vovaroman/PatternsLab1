@@ -147,3 +147,5 @@ public class Map
 ```
 
 In this code block we can check realisation of singleton pattern:)
+
+
