@@ -11,10 +11,10 @@ namespace patternLab.Factory.Rectangle
     public class RectangleBuilder: AbstractObject, IObjectBuilder
     {
         public new RectangleBuilder _cbInstance;
-        public static RectangleBuilder CopyCircle(RectangleBuilder tempCircle)
+        public static RectangleBuilder CopyRectangle(RectangleBuilder tempRectangle)
         {
-            RectangleBuilder temp = new RectangleBuilder(tempCircle.formGraphics, tempCircle.ThisObject, tempCircle.ObjectColor,
-                tempCircle.timer);
+            RectangleBuilder temp = new RectangleBuilder(tempRectangle.formGraphics, tempRectangle.ThisObject, tempRectangle.ObjectColor,
+                tempRectangle.timer);
 
             return temp;
         }
