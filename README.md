@@ -11,7 +11,7 @@ This lab include realisation of next patterns:
 
 ![Image of Factory Method](https://refactoring.guru/images/patterns/cards/factory-method-mini-2x.png)
 
-Declaration of [abstract class] (https://github.com/vovaroman/PatternsLab1/blob/master/patternLab/Factory/AbstractObject.cs)
+Declaration of [abstract class](https://github.com/vovaroman/PatternsLab1/blob/master/patternLab/Factory/AbstractObject.cs)
 ```
 public abstract class AbstractObject : IObjectBuilder
 {
